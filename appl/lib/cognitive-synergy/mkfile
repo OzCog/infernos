@@ -1,0 +1,33 @@
+# Cognitive Synergy Modules Makefile
+# Phase 1.1: Scheme Cognitive Grammar Microservices Implementation
+
+<../../../mkconfig
+
+TARG=\
+	atomspace.dis\
+	cognitive.dis\
+	scheme-adapter.dis\
+	test-cognitive-synergy.dis\
+
+MODULES=\
+	../../module/cognitive-synergy/atomspace.m\
+	../../module/cognitive-synergy/cognitive.m\
+	../../module/cognitive-synergy/scheme-adapter.m\
+	../../module/cognitive-synergy/test-cognitive-synergy.m\
+
+SYSMODULES=\
+	$ROOT/module/sys.m\
+	$ROOT/module/draw.m\
+	$ROOT/module/sexprs.m\
+	$ROOT/module/hash.m\
+	$ROOT/module/lists.m\
+
+atomspace.dis: atomspace.b $MODULES $SYSMODULES
+
+cognitive.dis: cognitive.b atomspace.dis $MODULES $SYSMODULES
+
+scheme-adapter.dis: scheme-adapter.b atomspace.dis cognitive.dis $MODULES $SYSMODULES
+
+test-cognitive-synergy.dis: test-cognitive-synergy.b atomspace.dis cognitive.dis scheme-adapter.dis $MODULES $SYSMODULES
+
+<../../../mkfiles/mkfile-sh
