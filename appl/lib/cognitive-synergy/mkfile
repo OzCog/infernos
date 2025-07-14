@@ -7,12 +7,16 @@ TARG=\
 	atomspace.dis\
 	cognitive.dis\
 	scheme-adapter.dis\
+	tensor.dis\
+	test-tensor.dis\
 	test-cognitive-synergy.dis\
 
 MODULES=\
 	../../module/cognitive-synergy/atomspace.m\
 	../../module/cognitive-synergy/cognitive.m\
 	../../module/cognitive-synergy/scheme-adapter.m\
+	../../module/cognitive-synergy/tensor.m\
+	../../module/cognitive-synergy/test-tensor.m\
 	../../module/cognitive-synergy/test-cognitive-synergy.m\
 
 SYSMODULES=\
@@ -28,6 +32,10 @@ cognitive.dis: cognitive.b atomspace.dis $MODULES $SYSMODULES
 
 scheme-adapter.dis: scheme-adapter.b atomspace.dis cognitive.dis $MODULES $SYSMODULES
 
-test-cognitive-synergy.dis: test-cognitive-synergy.b atomspace.dis cognitive.dis scheme-adapter.dis $MODULES $SYSMODULES
+tensor.dis: tensor.b atomspace.dis $MODULES $SYSMODULES
+
+test-tensor.dis: test-tensor.b tensor.dis atomspace.dis $MODULES $SYSMODULES
+
+test-cognitive-synergy.dis: test-cognitive-synergy.b atomspace.dis cognitive.dis scheme-adapter.dis tensor.dis $MODULES $SYSMODULES
 
 <../../../mkfiles/mkfile-sh
